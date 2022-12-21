@@ -8,7 +8,8 @@ class Image(models.Model):
                              related_name='images_created',
                              on_delete=models.CASCADE)
     title = models.CharField(max_length=250)
-    slug = models.SlugField(max_length=250, blank=True)
+    slug = models.SlugField(max_length=250,
+                            blank=True)
     url = models.URLField(max_length=2000)
     image = models.ImageField(upload_to='images/%Y/%m/%d')
     description = models.TextField(blank=True)
@@ -21,7 +22,7 @@ class Image(models.Model):
         indexes = [
             models.Index(fields=['-created']),
         ]
-        ordering = ['created']
+        ordering = ['-created']
 
     def __str__(self):
         return self.title
